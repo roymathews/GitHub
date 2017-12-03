@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"></jsp:include>
-<body>
+<body ng-app="app">
  <div  class="container-fluid">
 
   <div role="tabpanel">
@@ -11,7 +14,10 @@
     
    
   </ul>  
-    <div id="tabContent1" class="tab-content">
+   <c:if test="${not empty msg}">
+									<div class="msg" align="center" style="color: red;">${msg}</div>
+								</c:if>
+    <div id="tabContent1" class="tab-content" ng-controller="controllerName">
     <div class="tab-pane fade in active" id="home1">
              
         
@@ -23,6 +29,7 @@
 
  <form method="post" action="categorysubmit">
  <h3>Add Category</h3>
+
  <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="name" type="text" required class="form-control" name="name" placeholder="Name">
@@ -62,9 +69,9 @@
         <!-- left column -->
        
      <div class="col-md-3"></div>
-<div style="margin-top:5%;" class="col-md-6">
+<div style="margin-top:3%;" class="col-md-6">
 
- <form method="post" action="productsubmit">
+ <form method="post" action="productsubmit" name="proform" enctype="multipart/form-data">
  <h3>Add Product</h3>
  <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -73,12 +80,55 @@
      <br>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
-      <input id="rate" type="text" required class="form-control" name="rate" placeholder="Price">
+      <input id="rate" type="text" required class="form-control" ng-model="rate" name="rate" ng-pattern="rate2" placeholder="Price">
+   <span ng-show="proform.rate.$error.pattern"  style="color:red">Please enter correct Amount</span> 
+   
     </div>
-     <br>
+    
+    <c:if test="${!empty listcat}">
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
+      <select name="cat" required  class="form-control">
+      <option selected="">Select Category</option>
+      <c:forEach items="${listcat}" var="category" >
+     
+      <option value="${category.id}">${category.name}</option>
+     
+      </c:forEach>
+      </select>
+   
+   
+    </div>
+    </c:if>
+    
+     <c:if test="${!empty listsup}">
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-shopping-cart"></i></span>
+      <select name="sup" required  class="form-control">
+      <option selected="">Select Supplier</option>
+      <c:forEach items="${listsup}" var="supplier">
+     
+      <option value="${supplier.ID}">${supplier.name}</option>
+     
+      </c:forEach>
+      </select>
+   
+   
+    </div>
+    </c:if><br>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-equalizer"></i></span>
-      <input id="stock" type="text" required class="form-control" name="stock" placeholder="Stock">
+      <input id="stock" type="text" required class="form-control" ng-model="stock" name="stock" ng-pattern="stock2" placeholder="Stock">
+      <span ng-show="proform.stock.$error.pattern"  style="color:red">Numbers only</span> 
+    </div>
+    
+    <div class="form-control">
+    
+    <label>Choose Image</label>
+    <input type="file" required class="form-control"  name="img">
+    
     </div>
     
    
@@ -144,6 +194,17 @@
        
       </div>
        </div></div>
+       <script>
+    var app = angular.module("app", []);
+    app.controller('controllerName', ['$scope', function ($scope) {
+       
+      
+ 
+    $scope.rate2 = /^-?[0-9]\d*(\.\d*)?$/;
+    $scope.stock2 = /^[0-9]*$/;
+    
+    }]);
+</script>
        <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <!-- <script src="js/bootstrap.js" type="text/javascript"></script> -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-3.3.4.js" type="text/javascript"></script>

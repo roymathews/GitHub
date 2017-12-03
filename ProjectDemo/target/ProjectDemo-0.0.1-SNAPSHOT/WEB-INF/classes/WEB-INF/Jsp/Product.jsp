@@ -7,6 +7,9 @@
 <div align="right" class="col-md-3"></div>
 	<div align="center" class="col-md-6">
 	<h3>Product List</h3>
+	<c:if test="${not empty msg}">
+									<div class="msg" style="color: red;">${msg}</div>
+								</c:if>
 	<br>
 	<c:if test="${!empty productList}">
 		<table class="table table-bordered">

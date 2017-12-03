@@ -32,7 +32,7 @@ public class SupplierController {
 		s.setName(name);
 		
 		SupplierDao.SaveSupplier(s);
-		ModelAndView mv = new ModelAndView("admin");
+		ModelAndView mv = new ModelAndView("redirect:/admin");
 		mv.addObject("msg","successfully added");
 		mv.addObject("admin");
 		return mv;

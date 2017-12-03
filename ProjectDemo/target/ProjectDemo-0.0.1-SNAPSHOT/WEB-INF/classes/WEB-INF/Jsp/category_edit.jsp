@@ -5,7 +5,9 @@
 <body>
 
 <div style="width: 60%" class="container">
-
+<c:if test="${not empty msg}">
+									<div class="msg" style="color: red;">${msg}</div>
+								</c:if> 
  <h3 align="center">Edit category Details</h3>
 <hr/>
   <form action="category_update"  method="post">

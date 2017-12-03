@@ -19,6 +19,7 @@ public class Product {
 	private String name;
 	private float rate;
 	private int stock;
+
 	@ManyToOne
 	@JoinColumn(name="CID")
 	private Category category;
@@ -61,7 +62,7 @@ public class Product {
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
-
+	
 	
 	
 	

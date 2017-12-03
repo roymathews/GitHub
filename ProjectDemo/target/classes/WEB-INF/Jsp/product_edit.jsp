@@ -11,7 +11,7 @@
 <c:if test="${not empty msg}">
 									<div class="msg" style="color: red;">${msg}</div>
 								</c:if>
-  <form action="product_update"  method="post">
+  <form action="product_update"  method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="p_id">Product  ID :</label>
       <input type="number" readonly class="form-control" id="p_id" placeholder="Product ID" name="id" value="${product.id}">
@@ -37,11 +37,11 @@
       <span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
       <select name="cat" required   class="form-control">
  
-  <option value="${product.category}" selected>${product.category}</option>
+  <option value="${product.category.id}" selected>${product.category.name}</option>
   
       <c:forEach items="${listcat}" var="category" >
     
-      <option value="${category.name}">${category.name}</option>
+      <option value="${category.id}">${category.name}</option>
      
       </c:forEach>
       </select>
@@ -57,10 +57,10 @@
    
       <span class="input-group-addon"><i class="glyphicon glyphicon-shopping-cart"></i></span>
       <select name="sup" required class="form-control">
- <option value="${product.supplier}" selected>${product.supplier}</option>
+ <option value="${product.supplier.ID}" selected>${product.supplier.name}</option>
       <c:forEach items="${listsup}" var="supplier">
      
-      <option value="${supplier.name}">${supplier.name}</option>
+      <option value="${supplier.ID}">${supplier.name}</option>
      
       </c:forEach>
       </select>
@@ -68,8 +68,15 @@
    
     </div>
     </c:if><br>
+  <label>Image</label>
+  <div class="form-group">
+    
+  <img src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" height="200px" width="250px" alt="No Image">;
   
+<span><input type="file" name='img' class="form-control"> </span>
   
+  </div>
+  <br>
  <div align="center" class="form-group">
 
     <button  type="submit" class="btn btn-primary" >UPDATE</button>

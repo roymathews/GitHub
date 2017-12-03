@@ -56,14 +56,32 @@ public class UserController {
 		
 		
 	}
+	@RequestMapping("/search")
+	public String search()
+	{
+return "search";
+}
+	@RequestMapping("/delivery")
+	public String delivery()
+	{
+return "delivery";
+}
+	@RequestMapping("/cart")
+	public String cart()
+	{
+return "cart";
+}
+	
+	
 	
 	@RequestMapping("/admin")
-	public String admin(Model model)
+	public String admin(Model model,@RequestParam("msg")String msg)
 	{		
 		List<Category> clist=CategoryDao.list();
 		model.addAttribute("listcat",clist);
 		List<Supplier> slist= SupplierDao.list();
 		model.addAttribute("listsup",slist);
+		model.addAttribute("msg",msg);
 		return "admin";
 		
 		

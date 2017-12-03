@@ -25,7 +25,7 @@
 					<td>${category.name}</td>
 					<td>${category.desc}</td>
 					<td ><a  href="./category_edit?id=${category.id}"><i class='glyphicon glyphicon-edit'></i></a></td>
-					<td><a  href="./category_delete?id=${category.id}"><i class='glyphicon glyphicon-trash'></i></a></td>
+					<td><a onclick="return confirm('Are you sure to delete?');" href="./category_delete?id=${category.id}"><i class='glyphicon glyphicon-trash'></i></a></td>
 				</tr>
 			</c:forEach>
 		</table>

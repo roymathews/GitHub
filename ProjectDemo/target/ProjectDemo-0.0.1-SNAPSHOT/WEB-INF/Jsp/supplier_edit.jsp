@@ -8,6 +8,9 @@
 
  <h3 align="center">Edit Supplier Details</h3>
 <hr/>
+<c:if test="${not empty msg}">
+									<div class="msg" style="color: red;">${msg}</div>
+								</c:if>
   <form action="supplier_update"  method="post">
     <div class="form-group">
       <label for="p_id">Supplier  ID :</label>

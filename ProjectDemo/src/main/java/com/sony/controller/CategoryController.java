@@ -29,8 +29,9 @@ public class CategoryController {
 		c.setDesc(desc);
 		
 		CategoryDao.SaveCategory(c);
-		ModelAndView mv = new ModelAndView("admin");
+		ModelAndView mv = new ModelAndView("redirect:/admin");
 		mv.addObject("msg","successfully added");
+		
 		mv.addObject("admin");
 		return mv;
 		

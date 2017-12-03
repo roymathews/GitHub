@@ -71,7 +71,7 @@
      <div class="col-md-3"></div>
 <div style="margin-top:3%;" class="col-md-6">
 
- <form method="post" action="productsubmit" name="proform">
+ <form method="post" action="productsubmit" name="proform" enctype="multipart/form-data">
  <h3>Add Product</h3>
  <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -122,6 +122,14 @@
       <span class="input-group-addon"><i class="glyphicon glyphicon-equalizer"></i></span>
       <input id="stock" type="text" required class="form-control" ng-model="stock" name="stock" ng-pattern="stock2" placeholder="Stock">
       <span ng-show="proform.stock.$error.pattern"  style="color:red">Numbers only</span> 
+    </div>
+    
+     <br>
+    <div class="input-group">
+ 
+   <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+    <input type="file" required class="form-control"  name="img">
+    
     </div>
     
    

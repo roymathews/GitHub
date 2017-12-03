@@ -6,6 +6,9 @@
 <body style="margin-top: 7%">
 <div align="right" class="col-md-3"></div>
 	<div align="center" class="col-md-6">
+	<c:if test="${not empty msg}">
+									<div class="msg" style="color: red;">${msg}</div>
+								</c:if>
 	<h3>Supplier List</h3>
 	<c:if test="${!empty listsup}">
 		<table class="table table-bordered">

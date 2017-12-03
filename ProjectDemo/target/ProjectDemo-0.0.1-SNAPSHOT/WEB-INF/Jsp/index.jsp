@@ -14,7 +14,7 @@
     </div>
 <div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
 <ul >
-  <li><a href="#">APPLE</a></li>
+  <li><a href="#">IPHONE</a></li>
   <li><a href="#">SAMSUNG</a></li>
   <li><a href="#">SONY</a></li>
   <li><a href="#">MI</a></li>

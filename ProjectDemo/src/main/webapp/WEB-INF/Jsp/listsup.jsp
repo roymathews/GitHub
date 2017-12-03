@@ -30,7 +30,7 @@
 					<td>${supplier.address}</td>
 					<td>${supplier.mobile}</td>
 					<td ><a  href="./supplier_edit?id=${supplier.ID}"><i class='glyphicon glyphicon-edit'></i></a></td>
-					<td><a  href="./supplier_delete?id=${supplier.ID}"><i class='glyphicon glyphicon-trash'></i></a></td>
+					<td><a onclick="return confirm('Are you sure?');" href="./supplier_delete?id=${supplier.ID}"><i class='glyphicon glyphicon-trash'></i></a></td>
 					
 				</tr>
 		

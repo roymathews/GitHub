@@ -2,6 +2,7 @@ package com.sony.dao;
 
 import java.util.List;
 
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -70,6 +71,16 @@ public class ProductDaoImpl implements ProductDao {
 		Session c = sessionFactory.getCurrentSession();
 		c.update(s);
 		System.out.println("success");
+	}
+
+
+	@Override
+	public List<Product> findByCatId(int id) {
+		
+		Session s=sessionFactory.openSession();
+		List<Product> results =s.createQuery("from Product where CID="+id).list();
+	s.close();
+		return results;
 	}
 
 }
