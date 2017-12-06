@@ -14,14 +14,11 @@
     </div>
 <div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
 <ul >
-  <li><a href="#">IPHONE</a></li>
-  <li><a href="#">SAMSUNG</a></li>
-  <li><a href="#">SONY</a></li>
-  <li><a href="#">MI</a></li>
-  <li><a href="#">OPPO</a></li>
-  <li><a href="#">VIVO</a></li>
-    <li><a href="#">LENOVO</a></li>
-      <li><a href="#">ASUS</a></li>
+<c:if test="${!empty listcat}">
+   <c:forEach items="${listcat}" var="category"> 
+  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}">${category.name} </a></li>
+  
+      </c:forEach></c:if>
 </ul>
 </div>
 </nav>
@@ -73,20 +70,20 @@
  </div>
  <div class="col-md-6" style="height:367px;">
  <div style="background-color:#DCD5D5;border:1px solid #FBFBFB" class="col-md-12">
- <h3>Offer 1 </h3>
- <p>some line about offer</p>
+ <h3>Exchange Your Old Phones!! </h3>
+ <p>Get a new Redmi Note 4 Phone </p>
  </div>
  <div style="background-color:#DCD5D5;border:1px solid #FBFBFB;padding-top:10px" class="col-md-12">
- <h3>Offer 2 </h3>
- <p>some line about offer</p>
+ <h3>Bank Offer</h3>
+ <p>Extra 5% off* with Axis Bank Buzz Credit CardT&C</p>
  </div>
  <div style="background-color:#DCD5D5;border:1px solid #FBFBFB;padding-top:10px" class="col-md-12">
- <h3>Offer 1 </h3>
- <p>some line about offer</p>
+ <h3>Paytm</h3>
+ <p>Extra 10% off on Paytm wallets</p>
  </div>
  <div style="background-color:#DCD5D5;border:1px solid #FBFBFB;padding-top:10px" class="col-md-12">
- <h3>Offer 1 </h3>
- <p>some line about offer</p>
+ <h3>Festival Offer</h3>
+ <p>Buy Products more than Rs 50,000 and get Rs 1000 off</p>
  </div>
 
  </div>
@@ -94,84 +91,21 @@
  <div class="container" style="width:90%;padding-top:20px">
  <div  class="col-md-12">
      <h3 align="center">NEW DEALS</h3><br>
+     <c:if test="${!empty productlist}">
+   <c:forEach items="${productlist}" begin="0" end="7" var="product"> 
      <div align="center" id="border" class="col-md-3"> 
   
     <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>
+    <a href="product-view?id=${product.id}">
+    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="" />
+     </a>  <p>${product.name}</p>
+      <strong>Rs :${product.rate}</strong>
      
-      <div align="center" id="border" class="col-md-3"> 
-      
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>    
-     <div align="center" id="border" class="col-md-3"> 
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
+      <p>${product.category.name}</p>
    </div>
-     <div align="center" id="border" class="col-md-3"> 
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>
-  
-         
-   <div align="center" id="border" class="col-md-3"> 
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>
-     <div align="center" id="border" class="col-md-3"> 
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>
-      <div align="center" id="border" class="col-md-3"> 
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>
-      <div align="center"id="border" class="col-md-3"> 
-    <br>
-   
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/images/mobile.jpg" alt="" />
-       <p>Iphone 6S</p>
-      <strong>RS. 34000</strong>
-      <p>Screen size:4.7inch</p>
-      <p>Ram:4gb</p>
-   </div>
-  
+    </c:forEach>
+    </c:if> 
+     
   </div>
 
 

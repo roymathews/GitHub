@@ -40,7 +40,7 @@
 
 
 <h2>Rs: ${product.rate}</h2><strike>Rs:${product.rate+100}</strike>,<br>
-
+<p style="color:green">${ product.stock} Stocks Left </p>
 <h3>Company</h3>
 <h4><b>Name: </b>${product.category.name}</h4> 
 <h3>Supplier Details</h3>

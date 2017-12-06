@@ -16,14 +16,11 @@
     </div>
 <div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
 <ul >
-  <li><a href="#">IPHONE</a></li>
-  <li><a href="#">SAMSUNG</a></li>
-  <li><a href="#">SONY</a></li>
-  <li><a href="#">MI</a></li>
-  <li><a href="#">OPPO</a></li>
-  <li><a href="#">VIVO</a></li>
-    <li><a href="#">LENOVO</a></li>
-      <li><a href="#">ASUS</a></li>
+<c:if test="${!empty listcat}">
+   <c:forEach items="${listcat}" var="category"> 
+  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}">${category.name} </a></li>
+  
+      </c:forEach></c:if>
 </ul>
 </div>
 </nav>
@@ -32,34 +29,20 @@
 <div style="width: 23%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">
 <h5 style="padding-left:10px" >FILTERS</h5>
 <hr/>
-<h6 style="padding-left:10px">BRAND</h6>
 
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input type="checkbox">Samsung</li>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input type="checkbox">Lenovo</li>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input type="checkbox">Sony</li>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input type="checkbox">Sand disk</li>
 <hr/>
-<h6 style="padding-left:10px">PRICE</h6>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input name="price" type="radio">Above 2000</li>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input name="price" type="radio">1000-2000</li>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input name="price" type="radio">500-1000</li>
-<li style="list-style-type:none;padding-left:10px;color:#ABA8A7;"><input name="price" type="radio">Below 500</li>
+<h6 style="padding-left:15px">PRICE</h6>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">Above 2000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">1000-2000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">500-1000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">Below 500</li>
 <hr/>
 </div>
   <div style="width: 73%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">
   <h6 style="padding-left:10px">Showing Results</h6>
   
-  <div style="float:right" class="container collapse navbar-collapse"  id="shop-nav1" >
-<ul >
-  <li class="aa">SORT BY</li>
-  <li><a href="#">RELEVANCE</a></li>
-  <li><a href="#">POPULARITY</a></li>
-  <li><a href="#">PRICES LOW TO HIGH</a></li>
-  <li><a href="#">PRICES HIGH TO LOW</a></li>
-  <li><a href="#">NEWEST FIRST</a></li>
-    
-</ul><br></div>
-<div  class="col-md-12">
+ 
+<div style="padding-bottom: 5%" class="col-md-12">
  
   
     <br>
@@ -68,7 +51,7 @@
    
    <div align="center"  id="border" class="col-md-3">  
    <a href="product-view?id=${product.id}">
-    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="" />
+    <img width="100px" style="padding-top: 3%" height="100px" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="" />
    </a>
        <p>${product.name}</p>
       <strong>${product.rate} </strong>

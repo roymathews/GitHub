@@ -32,10 +32,10 @@
 
 <hr/>
 <h6 style="padding-left:15px">PRICE</h6>
-<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">Above 2000</li>
-<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">1000-2000</li>
-<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">500-1000</li>
-<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">Below 500</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">Above 20000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">10000-20000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">5000-10000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input name="price" type="radio">Below 5000</li>
 <hr/>
 </div>
   <div style="width: 73%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">

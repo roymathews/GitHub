@@ -110,9 +110,15 @@ background-color: #ADD8E6;
    
       
       <ul class="nav navbar-nav navbar-right">
-       
+      <c:choose>
+       <c:when test="${pageContext.request.userPrincipal.name != null}">
+	   <li style="margin-top: 8%">Welcome : ${pageContext.request.userPrincipal.name}</li>
+          <li> <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></li>
+	</c:when>
+	<c:otherwise>
         <li><a href="register">Sign Up</a></li>
-         <li><a href="login">Login</a></li>
+         <li><a href="login">Login</a></li></c:otherwise>
+         </c:choose>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

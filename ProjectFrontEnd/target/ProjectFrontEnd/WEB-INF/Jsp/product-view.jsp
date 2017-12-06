@@ -15,14 +15,11 @@
     </div>
 <div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
 <ul >
-  <li><a href="#">IPHONE</a></li>
-  <li><a href="#">SAMSUNG</a></li>
-  <li><a href="#">SONY</a></li>
-  <li><a href="#">MI</a></li>
-  <li><a href="#">OPPO</a></li>
-  <li><a href="#">VIVO</a></li>
-    <li><a href="#">LENOVO</a></li>
-      <li><a href="#">ASUS</a></li>
+<c:if test="${!empty listcat}">
+   <c:forEach items="${listcat}" var="category"> 
+  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}">${category.name} </a></li>
+  
+      </c:forEach></c:if>
 </ul>
 </div>
 </nav>
