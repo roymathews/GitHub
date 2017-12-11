@@ -50,17 +50,16 @@ return listcat;
 }
 @Transactional
 public Category findById(int id) {
-	return (Category)sessionFactory.openSession().get(Category.class,id);
+	return (Category)sessionFactory.getCurrentSession().get(Category.class,id);
 }
 
 
 @Transactional
-public void delete(Category p) {
-	Session s=sessionFactory.openSession();
-	s.beginTransaction();
-	s.delete(p);
-	s.getTransaction().commit();
-	s.close();sessionFactory.openSession().delete(p);
+public void delete(Category c) {
+	Session s=sessionFactory.getCurrentSession();
+	
+	s.delete(c);
+	
 	
 }
 @Transactional

@@ -11,7 +11,7 @@
 <c:if test="${not empty msg}">
 									<div class="msg" style="color: red;">${msg}</div>
 								</c:if>
-  <form action="product_update"  method="post" enctype="multipart/form-data">
+  <form action="product_update?_csrf=${_csrf.token}"  method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="p_id">Product  ID :</label>
       <input type="number" readonly class="form-control" id="p_id" placeholder="Product ID" name="id" value="${product.id}">
@@ -80,6 +80,7 @@
  <div align="center" class="form-group">
 
     <button  type="submit" class="btn btn-primary" >UPDATE</button>
+     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </div>
   </form>
 

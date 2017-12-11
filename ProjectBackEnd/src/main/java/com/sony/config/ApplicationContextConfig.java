@@ -19,6 +19,7 @@ import com.sony.model.Category;
 import com.sony.model.Product;
 import com.sony.model.Supplier;
 import com.sony.model.User;
+import com.sony.model.Cart;
 
 @Configuration
 @ComponentScan("com.sony")
@@ -53,6 +54,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClasses(User.class);
 		sessionBuilder.addAnnotatedClasses(Category.class);
 		sessionBuilder.addAnnotatedClasses(Supplier.class);
+		sessionBuilder.addAnnotatedClasses(Cart.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 

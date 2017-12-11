@@ -35,7 +35,7 @@ public class ProductController {
 	
 	@Autowired (required= true)
 	private SupplierDao SupplierDao;
-	@RequestMapping(value="/productsubmit",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/productsubmit",method=RequestMethod.POST)
 	public ModelAndView  reg1(@RequestParam("name")String name,@RequestParam("rate")float rate,@RequestParam("stock")int stock,@RequestParam("cat")int category,@RequestParam("sup")int supplier,@RequestParam("img") MultipartFile file)
 	{		
 		Product p=new Product();
@@ -66,13 +66,13 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping("/prodetails")
+	@RequestMapping("/admin/prodetails")
 	public String Listproduct(Model model) {
 		model.addAttribute("productList", this.ProductDAO.list());
 		return "Product";
 	}
 	
-	@RequestMapping(value="/product_delete")
+	@RequestMapping(value="/admin/product_delete")
 	public ModelAndView deleteProduct(HttpServletRequest request){
 		
 		Product p=ProductDAO.findById(Integer.valueOf(request.getParameter("id")));
@@ -94,7 +94,7 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping(value="/product_edit")
+	@RequestMapping(value="/admin/product_edit")
 	public ModelAndView editProduct(HttpServletRequest request)
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -111,7 +111,7 @@ public class ProductController {
 		return su;
 		
 	}
-	@RequestMapping(value="product_update",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/product_update",method=RequestMethod.POST)
 	
 	public ModelAndView ss(@RequestParam("id")int id,@RequestParam("name")String name,@RequestParam("rate")Float rate,@RequestParam("stock")int stock,@RequestParam("cat")int category,@RequestParam("sup")int supplier,@RequestParam("img") MultipartFile files)
 	{	
@@ -147,10 +147,11 @@ try {
 	public ModelAndView searchProduct(HttpServletRequest request)
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
+		int sort = Integer.parseInt(request.getParameter("sort"));
 		ModelAndView su = new ModelAndView("search");
-		su.addObject("productlist",ProductDAO.findByCatId(id));
+		su.addObject("productlist",ProductDAO.findByCatId(id,sort));
 		su.addObject("listcat",CategoryDao.list());
-		
+		su.addObject("msg1",+id);
 		return su;
 		
 	}
@@ -158,11 +159,13 @@ try {
 	public ModelAndView returnProduct(HttpServletRequest request)
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
+		String msg = request.getParameter("msg");
 		ModelAndView su = new ModelAndView("product-view");
 		
 		List<Product> list = ProductDAO.list();
 		su.addObject("listcat",CategoryDao.list());
 		su.addObject("product",ProductDAO.findById(id));
+		su.addObject("msg",msg);
 		su.addObject("product-view",list);
 		
 		return su;

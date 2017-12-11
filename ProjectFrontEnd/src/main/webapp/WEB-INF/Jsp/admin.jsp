@@ -27,7 +27,7 @@
       <div class="col-md-3"></div>
 <div style="margin-top:5%;" class="col-md-6">
 
- <form method="post" action="categorysubmit">
+ <form method="post" action="admin/categorysubmit">
  <h3>Add Category</h3>
 
  <div class="input-group">
@@ -44,14 +44,14 @@
     
     <div align="center" >
      <input type="submit" value="Submit" class="btn btn-success" name="submit">
-    
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </div><br>
   </form>
   
 </div>
 <div style="margin-top:5%;" class="col-md-3">
 
-<a href="listcat"> <button   class="btn btn-primary">List all Category</button></a>
+<a href="admin/listcat"> <button   class="btn btn-primary">List all Category</button></a>
 </div>
           
         
@@ -71,7 +71,7 @@
      <div class="col-md-3"></div>
 <div style="margin-top:3%;" class="col-md-6">
 
- <form method="post" action="productsubmit" name="proform" enctype="multipart/form-data">
+ <form method="post" action="admin/productsubmit?_csrf=${_csrf.token}" name="proform" enctype="multipart/form-data">
  <h3>Add Product</h3>
  <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -135,15 +135,16 @@
    
     <br>
     <div align="center" >
+      
      <input type="submit" value="Submit" class="btn btn-success" name="submit">
-    
+   
     </div><br>
   </form>
   
 </div>
 <div style="margin-top:10%;" class="col-md-3">
 
-<a href="prodetails"> <button   class="btn btn-primary">List all Product</button></a>
+<a href="admin/prodetails"> <button   class="btn btn-primary">List all Product</button></a>
 </div>
      
         
@@ -159,7 +160,7 @@
       <div class="col-md-3"></div>
 <div style="margin-top:5%;" class="col-md-6">
 
- <form method="post" action="suppliersubmit">
+ <form method="post" action="admin/suppliersubmit">
  <h3>Add Supplier</h3>
  <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -178,15 +179,16 @@
     </div>
     <br>
     <div align="center" >
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
      <input type="submit" value="Submit" class="btn btn-success" name="submit">
-    
+
     </div><br>
   </form>
   
 </div>
 <div style="margin-top:10%;" class="col-md-3">
 
-<a href="listsup"> <button   class="btn btn-primary">List all Supplier</button></a>
+<a href="admin/listsup"> <button   class="btn btn-primary">List all Supplier</button></a>
 </div>
      
           

@@ -47,17 +47,17 @@ public class SupplierDaoImpl implements SupplierDao {
 	}
 	@Transactional
 	public Supplier findById(int id) {
-		return (Supplier)sessionFactory.openSession().get(Supplier.class,id);
+		return (Supplier)sessionFactory.getCurrentSession().get(Supplier.class,id);
 	}
 
 
 	@Transactional
 	public void delete(Supplier p) {
-		Session s=sessionFactory.openSession();
-		s.beginTransaction();
+		Session s=sessionFactory.getCurrentSession();
+		
 		s.delete(p);
-		s.getTransaction().commit();
-		s.close();sessionFactory.openSession().delete(p);
+		
+	
 		
 	}
 	@Transactional

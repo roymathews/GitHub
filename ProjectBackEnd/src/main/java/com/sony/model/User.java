@@ -16,6 +16,7 @@ public class User {
 	public String username;	
 	public String mobile;
 	public String password;
+	public String role;
 	public String getEmail() {
 		return email;
 	}

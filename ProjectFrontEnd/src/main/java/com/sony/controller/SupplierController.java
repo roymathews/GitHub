@@ -22,7 +22,7 @@ public class SupplierController {
 	@Autowired (required=true)
 	private SupplierDao SupplierDao;
 	
-	@RequestMapping(value="/suppliersubmit",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/suppliersubmit",method=RequestMethod.POST)
 	public ModelAndView supp(@RequestParam("name")String name,@RequestParam("address")String address,@RequestParam("phone")String phone)
 	{
 		Supplier s = new Supplier();
@@ -32,19 +32,19 @@ public class SupplierController {
 		s.setName(name);
 		
 		SupplierDao.SaveSupplier(s);
-		ModelAndView mv = new ModelAndView("redirect:/admin");
+		ModelAndView mv = new ModelAndView("redirect:/admin?msg=");
 		mv.addObject("msg","successfully added");
-		mv.addObject("admin");
+		
 		return mv;
 		
 	}
-	@RequestMapping("/listsup")
+	@RequestMapping("/admin/listsup")
 	public String listcat(Model model){
 		
 		model.addAttribute("listsup",this.SupplierDao.list());
 		return "listsup";
 	}
-	@RequestMapping(value="/supplier_delete")
+	@RequestMapping(value="/admin/supplier_delete")
 	public ModelAndView deleteProduct(HttpServletRequest request){
 		
 		Supplier p=SupplierDao.findById(Integer.valueOf(request.getParameter("id")));
@@ -65,7 +65,7 @@ public class SupplierController {
 		return mv;
 		
 	}
-	@RequestMapping(value="/supplier_edit")
+	@RequestMapping(value="/admin/supplier_edit")
 	public ModelAndView editSupplier(HttpServletRequest request){
 		int id=Integer.parseInt(request.getParameter("id"));
 		ModelAndView su = new ModelAndView("supplier_edit");
@@ -77,7 +77,7 @@ public class SupplierController {
 		
 	}
 	
-	@RequestMapping(value="/supplier_update",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/supplier_update",method=RequestMethod.POST)
 	
 		public ModelAndView ss(@RequestParam("id")int ID,@RequestParam("name")String name,@RequestParam("address")String address,@RequestParam("phone")String phone)
 		{	

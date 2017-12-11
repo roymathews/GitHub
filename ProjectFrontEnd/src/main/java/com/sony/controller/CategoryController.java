@@ -21,7 +21,7 @@ public class CategoryController {
 	@Autowired (required = true)
 	private CategoryDao CategoryDao;
 
-	@RequestMapping(value="/categorysubmit",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/categorysubmit",method=RequestMethod.POST)
 	public ModelAndView  reg(@RequestParam("name")String name,@RequestParam("desc")String desc)
 	{		
 		Category c=new Category();
@@ -38,14 +38,14 @@ public class CategoryController {
 		
 	}
 	
-	@RequestMapping("/listcat")
+	@RequestMapping("/admin/listcat")
 	public String listcat(Model model){
 		
 		model.addAttribute("listcat",this.CategoryDao.list());
 		return "listcat";
 	}
 	
-	@RequestMapping(value="/category_delete")
+	@RequestMapping(value="/admin/category_delete")
 	public ModelAndView deleteCategory(HttpServletRequest request){
 		
 		Category c=CategoryDao.findById(Integer.valueOf(request.getParameter("id")));
@@ -61,7 +61,7 @@ public class CategoryController {
 		return mv;
 		
 	}
-	@RequestMapping(value="/category_edit")
+	@RequestMapping(value="/admin/category_edit")
 	public ModelAndView editCategory(HttpServletRequest request)
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -73,7 +73,7 @@ public class CategoryController {
 		return su;
 		
 	}
-	@RequestMapping(value="category_update",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/category_update",method=RequestMethod.POST)
 	
 	public ModelAndView ss(@RequestParam("id")int id,@RequestParam("name")String name,@RequestParam("desc")String desc)
 	{	

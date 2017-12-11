@@ -3,6 +3,11 @@ package com.sony.model;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +24,8 @@ public class Product {
 	private String name;
 	private float rate;
 	private int stock;
-
+	@OneToMany(targetEntity=Cart.class,mappedBy = "product", cascade = CascadeType.ALL)
+	private Set<Cart> carts;
 	@ManyToOne
 	@JoinColumn(name="CID")
 	private Category category;

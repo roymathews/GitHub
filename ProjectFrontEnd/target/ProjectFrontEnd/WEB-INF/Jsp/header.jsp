@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap-3.3.4.css" rel="stylesheet" >
 <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/test.css" rel="stylesheet">
@@ -91,17 +91,26 @@ background-color: #ADD8E6;
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1" ><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-      <a class="navbar-brand" href="./">Mobile Cart</a>
+     
        <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" href="./">Mobile Cart</a>
+        <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
+    
         <li style="list-style-type: none;margin-top: 5%"> 
         <select name="cat" required  class="form-control" onchange="location = this.value;">
       <option selected="">Select Category</option>
       <c:forEach items="${listcat}" var="category" >
      
-   <option value="productbycat?id=${category.id}">${category.name}</option>
+   <option value="productbycat?id=${category.id}&sort=0">${category.name}</option>
      
       </c:forEach>
       </select></li>
+      </c:if>
+      <c:if test="${pageContext.request.userPrincipal.name != null && pageContext.request.userPrincipal.name =='roymathewsp@gmail.com'}">
+      <li>
+      <a href="admin?msg=">ADMIN</a>
+      </li>
+      </c:if>
       </ul>
       </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -110,9 +119,15 @@ background-color: #ADD8E6;
    
       
       <ul class="nav navbar-nav navbar-right">
-       
+      <c:choose>
+       <c:when test="${pageContext.request.userPrincipal.name != null}">
+	   <li style="margin-top: 8%">Welcome : ${pageContext.request.userPrincipal.name}</li>
+          <li> <a href="<c:url value="/logout" />" > Logout</a></li>
+	</c:when>
+	<c:otherwise>
         <li><a href="register">Sign Up</a></li>
-         <li><a href="login">Login</a></li>
+         <li><a href="login">Login</a></li></c:otherwise>
+         </c:choose>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

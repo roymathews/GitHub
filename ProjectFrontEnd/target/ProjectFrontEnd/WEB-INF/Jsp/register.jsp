@@ -34,6 +34,7 @@
     <br>
     <div align="center" >
      <input type="submit" value="Submit"  class="btn btn-success" name="submit">
+     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </div><br>
     <c:if test="${not empty msg}">
 									<div align="center" class="msg" style="color: red;">${msg}</div>

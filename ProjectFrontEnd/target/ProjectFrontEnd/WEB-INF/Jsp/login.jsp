@@ -6,7 +6,8 @@
 <div class="col-md-3"  align="center"></div>
 <div  style="border-style:solid;opacity:0.8;margin-top:5%;" align="center" class="col-md-6">
 <h3 style="margin-top:5%;">Mobile Cart : LOGIN</h3><br>
-<form action="loginsubmit" method="post" >
+<c:url var="login" value="/j_spring_security_check" />
+<form name="formLogin" action="${login}" method="post" >
 
 <div class="form-group">
 <label >E-mail:</label>
@@ -18,8 +19,9 @@
 </div>
 <div class="form-group">
 <input  class="btn btn-primary"   type="submit" value="Submit"/>
-</div>
+</div><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
+
 </div>
 <div class="col-md-3"></div>
 

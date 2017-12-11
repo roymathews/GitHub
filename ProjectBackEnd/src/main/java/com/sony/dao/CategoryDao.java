@@ -10,6 +10,6 @@ public interface CategoryDao {
 	List<Category> list();
 	void SaveCategory(Category c);
 	public Category  findById(int id);
-	void delete(Category p);
+	void delete(Category c);
 	void updatecategory(Category s);
 }

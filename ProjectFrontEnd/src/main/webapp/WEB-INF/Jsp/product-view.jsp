@@ -13,24 +13,28 @@
         </button>
      
     </div>
+ <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
 <div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
 <ul >
 <c:if test="${!empty listcat}">
    <c:forEach items="${listcat}" var="category"> 
-  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}">${category.name} </a></li>
+  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}&sort=0">${category.name} </a></li>
   
       </c:forEach></c:if>
 </ul>
-</div>
+</div></c:if>
 </nav>
 
 <div class="container" style="width:90%;padding-top:20px">
+  			<c:if test="${not empty msg}">
+<div class="msg" align="center"  style="color: red;">${msg}</div>	</c:if>	
 <div class="col-md-12">
 
 <div align="center" style="border:1px solid #AFAFAF" class="col-md-4">
 <img width="300" height="350" style="padding-top: 5%" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="">
 <br><br>
-<button class="btn btn-info">ADD TO CART</button>
+
+<a href="user/cart?id=${product.id}"><button class="btn btn-info">ADD TO CART</button></a>
 <button class="btn btn-warning">BUY NOW</button>
 <br><br>
 </div>
@@ -47,7 +51,7 @@
 <h4><b>Name: </b>${product.supplier.name}</h4>
 
 <h4><b>Address:</b> ${product.supplier.address}</h4>
-</div>
+ 
 </div></div>
 
 </body>

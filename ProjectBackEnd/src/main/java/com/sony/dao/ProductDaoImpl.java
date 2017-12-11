@@ -52,7 +52,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Transactional
 	public Product findById(int id) {
-		return (Product)sessionFactory.openSession().get(Product.class,id);
+		return (Product)sessionFactory.getCurrentSession().get(Product.class,id);
 	}
 
 
@@ -74,12 +74,26 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Transactional
-	public List<Product> findByCatId(int id) {
-		
+	public List<Product> findByCatId(int id,int sort) {
 		Session s=sessionFactory.openSession();
-		List<Product> results =s.createQuery("from Product where CID="+id).list();
-	s.close();
-		return results;
+		int a = 5000,b=10000,c=20000;
+		switch(sort){  
+	    case 1: List<Product> results =s.createQuery("from Product where CID="+id+ "and RATE<"+a).list();	
+		         return results;  
+	    case 2: List<Product> results1 =s.createQuery("from Product where CID="+id+"AND RATE BETWEEN '"+a+"' AND '"+b+"'").list();	
+		return results1; 
+	    case 3:List<Product> results2 =s.createQuery("from Product where CID="+id+"AND RATE BETWEEN '"+b+"' AND '"+c+"'").list();	
+		return results2;  
+	    case 4:List<Product> results3 =s.createQuery("from Product where CID="+id+ "and RATE>"+c).list();	
+		return results3;
+	    default:List<Product> results4 =s.createQuery("from Product where CID="+id).list();		
+		return results4; 
+		
+	    }
+	
+
+		
 	}
+
 
 }
