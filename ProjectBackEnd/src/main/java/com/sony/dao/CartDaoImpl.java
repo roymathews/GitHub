@@ -71,6 +71,13 @@ public class CartDaoImpl implements CartDao{
 			
 			
 		}
+		@Transactional
+		public void delete(Cart c) {
+Session s=sessionFactory.getCurrentSession();
+			
+			s.delete(c);
+			
+		}
 		
 	
 

@@ -1,5 +1,7 @@
 package com.sony.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,14 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("success");
 		
 		
+	}
+	@Transactional
+	public List<User> list(String name) {
+		Session s=sessionFactory.getCurrentSession();	
+		@SuppressWarnings("unchecked")
+		List<User> userlist = s.createQuery("from User where  EMAIL='"+name+"'").list();
+		System.out.println(userlist);
+		return userlist;
 	}
 	
 	

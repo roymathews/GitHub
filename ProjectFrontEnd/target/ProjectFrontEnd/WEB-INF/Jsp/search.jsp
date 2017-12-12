@@ -50,7 +50,8 @@
  
   
     <br>
-   <c:if test="${!empty productlist}">
+     <c:choose>
+   <c:when test="${!empty productlist}">
    <c:forEach items="${productlist}" var="product">  
    
    <div align="center"  id="border" class="col-md-3">  
@@ -64,9 +65,12 @@
  
       </c:forEach>
       
-      </c:if>
-  
-   
+      </c:when>
+  <c:otherwise>
+      <li style="list-style-type: none"><h5 style="color:orange">No results found</h5></li>
+      
+      </c:otherwise>
+   </c:choose>
    </div>
  
   <br>  

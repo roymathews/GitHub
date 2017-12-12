@@ -57,7 +57,7 @@
 </c:forEach>
 </c:when>
 <c:otherwise>
-<p >Your Cart is Empty</p>
+<p style="padding-left:10px;color: orange">Your Cart is Empty</p>
 </c:otherwise></c:choose>
 <c:if test="${!empty cartlist}">
 <div class="col-md-12">
@@ -68,7 +68,7 @@
 <a href="../"  class="btn btn-default">CONTINUE SHOPPING</a>
 </div>
 <div align="left" class="col-md-5">
-<p class="btn btn-warning">PLACE ORDER</p>
+<a href="check-out" class="btn btn-warning">PLACE ORDER</a>
 </div><br><br><br>
 </div>
 </c:if>

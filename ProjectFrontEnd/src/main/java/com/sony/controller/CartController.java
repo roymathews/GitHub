@@ -19,6 +19,8 @@ import com.sony.model.Category;
 import com.sony.model.Product;
 import com.sony.dao.CartDao;
 import com.sony.dao.ProductDao;
+import com.sony.dao.CategoryDao;
+import com.sony.dao.UserDao;
 
 @Controller
 public class CartController {
@@ -27,6 +29,10 @@ public class CartController {
 	private ProductDao productDao;
 	@Autowired (required= true)
 	private CartDao CartDao;
+	@Autowired (required= true)
+	private CategoryDao CategoryDao;
+	@Autowired (required= true)
+	private UserDao UserDao;
 	
 	@RequestMapping(value="/user/cart")
 	public String addtocart(Model mv,@RequestParam("id") int id)
@@ -98,5 +104,18 @@ public class CartController {
 		
 		
 	}
+	@RequestMapping("/user/check-out")
+	public String delivery(Model model)
+	{
+		List<Category> clist=CategoryDao.list();
+		model.addAttribute("listcat",clist);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+	      model.addAttribute("cartlist",this.CartDao.list(name));
+	      model.addAttribute("userlist",this.UserDao.list(name));
+		
+		
+return "delivery";
+}
 
 }

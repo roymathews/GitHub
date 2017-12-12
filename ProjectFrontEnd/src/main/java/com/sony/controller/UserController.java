@@ -78,11 +78,7 @@ public class UserController {
 		
 return "search";
 }
-	@RequestMapping("/delivery")
-	public String delivery()
-	{
-return "delivery";
-}
+	
 	
 	
 	
