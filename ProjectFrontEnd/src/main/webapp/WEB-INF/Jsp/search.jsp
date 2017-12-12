@@ -35,7 +35,7 @@
  <c:if test="${not empty msg1}">
 									
 								
-<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input onclick="document.location='productbycat?id=${msg1}&sort=4'" class="users"  name="price" type="radio">Above 20000</li>
+<li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input  onclick="document.location='productbycat?id=${msg1}&sort=4'" class="users"  name="price" type="radio">Above 20000</li>
 <li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input onclick="document.location='productbycat?id=${msg1}&sort=3'" class="users" name="price" type="radio">10000-20000</li>
 <li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input onclick="document.location='productbycat?id=${msg1}&sort=2'" class="users" name="price" type="radio">5000-10000</li>
 <li style="list-style-type:none;padding-left:15px;color:#ABA8A7;"><input onclick="document.location='productbycat?id=${msg1}&sort=1'" class="users" name="price"  type="radio">Below 5000</li>

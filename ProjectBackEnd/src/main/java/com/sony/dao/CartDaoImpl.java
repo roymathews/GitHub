@@ -12,6 +12,8 @@ import com.sony.model.Cart;
 
 
 
+
+
 @Repository("CartDao")
 public class CartDaoImpl implements CartDao{
 	@Autowired
@@ -46,5 +48,30 @@ public class CartDaoImpl implements CartDao{
 		Session s = sessionFactory.getCurrentSession();
 		s.update(c);
 	}
+	
+		@Transactional
+		public List<Cart> list(String name) {
+			Session s=sessionFactory.getCurrentSession();		
+			@SuppressWarnings("unchecked")
+			List<Cart> cartlist = s.createQuery("from Cart where  USER='"+name+"'").list();
+			System.out.println(cartlist);
+			return cartlist;
+		}
+		
+		@Transactional
+		public Cart findByid(int id) {
+			return (Cart)sessionFactory.getCurrentSession().get(Cart.class,id);
+			
+		}
+		@Transactional
+		public void removecart(Cart c) {
+			Session s=sessionFactory.getCurrentSession();
+			
+			s.delete(c);
+			
+			
+		}
+		
+	
 
 }

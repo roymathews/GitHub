@@ -83,11 +83,7 @@ return "search";
 	{
 return "delivery";
 }
-	@RequestMapping("/cart")
-	public String cart()
-	{
-return "cart";
-}
+	
 	
 	
 	
@@ -117,6 +113,7 @@ return "cart";
 		User u=new User();
 		u.setEmail(email);
 		u.setMobile(mobile);
+		u.setRole("USER");
 		u.setPassword(password);
 		u.setUsername(name);
 		

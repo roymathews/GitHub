@@ -14,62 +14,78 @@
         </button>
      
     </div>
+  <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
 <div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
 <ul >
-  <li><a href="#">IPHONE</a></li>
-  <li><a href="#">SAMSUNG</a></li>
-  <li><a href="#">SONY</a></li>
-  <li><a href="#">MI</a></li>
-  <li><a href="#">OPPO</a></li>
-  <li><a href="#">VIVO</a></li>
-    <li><a href="#">LENOVO</a></li>
-      <li><a href="#">ASUS</a></li>
+<c:if test="${!empty listcat}">
+   <c:forEach items="${listcat}" var="category"> 
+  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}&sort=0">${category.name} </a></li>
+  
+      </c:forEach></c:if>
 </ul>
-</div>
+</div></c:if>
 </nav>
-<div class="container" style="width:90%;padding-top:20px">
+<div class="container" style="width:90%;">
 <div style="width: 73%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">
-<h4 style="padding-left:3%;padding-top:2%">MY CART</h4>
+<h4 style="padding-left:3%;">MY CART</h4>
 <hr/>
-<div class="col-md-12">
-<div class="col-md-3"><img width="180" src="${pageContext.request.contextPath}/resources/images/3.jpeg" alt=""></div>
-<div class="col-md-3">
-<h5>Tiptopp </h5>
-<p>Multicolor</p>
-<p>Seller: Retailnet</p>
-<p><b>Rs.500</b>&nbsp;&nbsp;<strike>Rs.600</strike>, 20% OFF </p>
-<p class="btn btn-danger">REMOVE</p><br><br>
+<c:choose>
+  <c:when test="${!empty cartlist}">
+    <c:set var = "total" scope = "session" value = "0"/>
+     <c:set var = "loop" scope = "session" value = "0"/>
+   <c:forEach items="${cartlist}" var="cart"> 
+   <c:set var = "loop" scope = "session" value = "${loop+1}"/>
+<div style="margin-top: 1%;" class="col-md-12">
+
+<div class="col-md-2"><img width="180" src="${pageContext.request.contextPath}/resources/products/${cart.product.id}.jpg" alt=""></div>
+<div class="col-md-1"></div>
+<div class="col-md-5">
+<h5>${cart.product.name}</h5>
+
+<p>Seller: ${cart.product.supplier.name}</p>
+<p><b>Rs. ${cart.product.rate}</b>,&nbsp;&nbsp;<strike>${cart.product.rate+100}</strike>,Rs. 100 OFF </p>
+<a href="remove-cart?id=${cart.id}" class="btn btn-danger">REMOVE</a><br><br>
 </div>
-<div align="right" class="col-md-6">
+<div align="right" class="col-md-4">
 <p>FREE DELIVERY IN 3-5 DAYS</p>
+<p><b>Quantity:${cart.quantity}</b></p>
+<p><b>Total:${cart.product.rate*cart.quantity}</b></p>
 </div>
+ <c:set var = "total" scope = "session" value = "${(cart.product.rate*cart.quantity)+total}"/>
 
 </div>
-
-
+</c:forEach>
+</c:when>
+<c:otherwise>
+<p >Your Cart is Empty</p>
+</c:otherwise></c:choose>
+<c:if test="${!empty cartlist}">
 <div class="col-md-12">
 <hr/>
 <div class="col-md-2"></div>
 <div align="right" class="col-md-5">
 
-<p class="btn btn-default">CONTINUE SHOPPING</p>
+<a href="../"  class="btn btn-default">CONTINUE SHOPPING</a>
 </div>
 <div align="left" class="col-md-5">
 <p class="btn btn-warning">PLACE ORDER</p>
 </div><br><br><br>
 </div>
-
+</c:if>
 </div>
+<c:if test="${!empty cartlist}">
 <div style="width: 23%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">
-<h4 style="padding-left:3%;padding-top:2%">PRICE DETAILS</h4>
+<h4 style="padding-left:3%;padding-top:2%">TOTAL PRICE DETAILS</h4>
 <hr/>
-<h5 style="padding-left:3%;">PRICE (1 ITEM) : Rs.500</h5>
-<h5 style="padding-left:3%;">DELIVERYCHARGES : FREE</h5>
+
+<h5 style="padding-left:3%;">DELIVERY CHARGES : FREE</h5>
 <hr/>
-<h5 style="padding-left:3%;">AMOUNT PAYABLE : Rs.500</h5>
+<h5 style="padding-left:3%;">GRAND TOTAL : <c:out value = "${total}"/></h5>
 
 <hr/>
-<p style="padding-left:3%;color:#38CB60">Your total savings Rs.100</p>
-</div></div>
+<p style="padding-left:3%;color:#38CB60">Your total savings Rs.<c:out value = "${loop*100}"/></p>
+</div>
+</c:if>
+</div>
 </body>
 </html>

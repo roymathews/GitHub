@@ -151,7 +151,8 @@ try {
 		ModelAndView su = new ModelAndView("search");
 		su.addObject("productlist",ProductDAO.findByCatId(id,sort));
 		su.addObject("listcat",CategoryDao.list());
-		su.addObject("msg1",+id);
+		su.addObject("msg1",id);
+		su.addObject("sort",sort);
 		return su;
 		
 	}
@@ -160,12 +161,14 @@ try {
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
 		String msg = request.getParameter("msg");
+	
 		ModelAndView su = new ModelAndView("product-view");
 		
 		List<Product> list = ProductDAO.list();
 		su.addObject("listcat",CategoryDao.list());
 		su.addObject("product",ProductDAO.findById(id));
 		su.addObject("msg",msg);
+		
 		su.addObject("product-view",list);
 		
 		return su;

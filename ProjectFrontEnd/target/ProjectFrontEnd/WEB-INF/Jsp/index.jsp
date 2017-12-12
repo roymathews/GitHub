@@ -97,7 +97,7 @@
      <div align="center" id="border" class="col-md-3"> 
   
     <br>
-    <a href="product-view?id=${product.id}">
+    <a href="product-view?id=${product.id}&msg=">
     <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="" />
      </a>  <p>${product.name}</p>
       <strong>Rs :${product.rate}</strong>

@@ -26,7 +26,8 @@
 </nav>
 
 <div class="container" style="width:90%;padding-top:20px">
-  				
+  			<c:if test="${not empty msg}">
+<div class="msg" align="center"  style="color: red;">${msg}</div>	</c:if>	
 <div class="col-md-12">
 
 <div align="center" style="border:1px solid #AFAFAF" class="col-md-4">
@@ -50,9 +51,7 @@
 <h4><b>Name: </b>${product.supplier.name}</h4>
 
 <h4><b>Address:</b> ${product.supplier.address}</h4>
- <c:if test="${not empty msg}">
-									<div class="msg" align="center" style="color: red;">${msg}</div>	</c:if>
-</div>
+ 
 </div></div>
 
 </body>

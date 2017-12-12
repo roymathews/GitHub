@@ -3,6 +3,8 @@ package com.sony.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.sony.model.Cart;
+import com.sony.model.Category;
 import com.sony.model.Product;
 import com.sony.dao.CartDao;
 import com.sony.dao.ProductDao;
@@ -71,8 +74,28 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/user/view-cart")
-	public String cart(){
+	public String cart(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+		model.addAttribute("cartlist",this.CartDao.list(name));
+		
 		return "cart";
+		
+	}
+	@RequestMapping(value="/user/remove-cart")
+	public String removecart(Model model,HttpServletRequest request)
+	{
+		Cart c=CartDao.findByid(Integer.valueOf(request.getParameter("id")));
+		System.out.print(c.getQuantity());
+		
+		   Product p=productDao.findById(c.getProduct().getId());
+		
+		p.setStock(c.getQuantity()+p.getStock());
+		  CartDao.removecart(c);
+		productDao.updateproduct(p); 
+		
+          return "redirect:/user/view-cart";
+		
 		
 	}
 
