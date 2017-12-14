@@ -84,7 +84,7 @@ public class CartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String name = auth.getName();
 		model.addAttribute("cartlist",this.CartDao.list(name));
-		
+		model.addAttribute("listcat",this.CategoryDao.list());
 		return "cart";
 		
 	}

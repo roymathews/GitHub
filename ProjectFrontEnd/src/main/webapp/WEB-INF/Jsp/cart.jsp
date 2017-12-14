@@ -19,7 +19,7 @@
 <ul >
 <c:if test="${!empty listcat}">
    <c:forEach items="${listcat}" var="category"> 
-  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}&sort=0">${category.name} </a></li>
+  <li style="text-transform: uppercase;"><a href="../productbycat?id=${category.id}&sort=0">${category.name} </a></li>
   
       </c:forEach></c:if>
 </ul>

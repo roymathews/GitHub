@@ -121,14 +121,15 @@ background-color: #ADD8E6;
    
       
       <ul class="nav navbar-nav navbar-right">
+       
       <c:choose>
        <c:when test="${pageContext.request.userPrincipal.name != null}">
-      
+     
+        <c:if test="${pageContext.request.userPrincipal.name != 'roymathewsp@gmail.com'}">
       <li>
       <a href="user/view-cart">VIEW CART</a>
       </li>
-    
-       
+    </c:if>
 	   <li ><a>Welcome : ${pageContext.request.userPrincipal.name}</a></li>
           <li> <a href="<c:url value="/logout" />" > Logout</a></li>
 	</c:when>

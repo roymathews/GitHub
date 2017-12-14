@@ -20,7 +20,7 @@ public class Orders {
 	private String address;
 	private String city;
 	private int pin;
-	private long phone;
+	private String phone;
 	private float total;
 	public int getId() {
 		return id;
@@ -58,10 +58,10 @@ public class Orders {
 	public void setPin(int pin) {
 		this.pin = pin;
 	}
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public float getTotal() {

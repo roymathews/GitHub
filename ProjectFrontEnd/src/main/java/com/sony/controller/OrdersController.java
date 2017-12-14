@@ -1,5 +1,7 @@
 package com.sony.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +24,10 @@ public class OrdersController {
 	
 @RequestMapping(value="/user/place-order",method=RequestMethod.POST)
 	
-	public ModelAndView ss(@RequestParam("total")float total,@RequestParam("name")String name,@RequestParam("email")String email,@RequestParam("address")String address,@RequestParam("city")String city,@RequestParam("pin")int pin,@RequestParam("phone")long phone)
+	public ModelAndView ss(@RequestParam("total")float total,@RequestParam("name")String name,@RequestParam("email")String email,@RequestParam("address")String address,@RequestParam("city")String city,@RequestParam("pin")int pin,@RequestParam("phone")String phone)
 	{	
 	Orders o = new Orders();
-	Cart c = new Cart();
+	
 	o.setAddress(address);
 	o.setCity(city);
 	o.setEmail(email);
@@ -34,9 +36,13 @@ public class OrdersController {
 	o.setUser(name);
 	o.setTotal(total);
 	OrdersDao.saveOrders(o);
-	c.setUser(email);
+	List<Cart> c = CartDao.list(email);
+	for (int i=0;i<c.size();i++)
+	{
+		CartDao.delete(c.get(i));
+		
+	}
 	
-	CartDao.delete(c);
 	ModelAndView mv = new ModelAndView("redirect:../");
 	mv.addObject("msg","successfully added");
 

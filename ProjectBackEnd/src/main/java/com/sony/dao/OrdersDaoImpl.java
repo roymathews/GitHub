@@ -26,6 +26,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	public void saveOrders(Orders o) {
 		Session s = sessionFactory.getCurrentSession();
 		s.save(o);
+	
 		
 	}
 
