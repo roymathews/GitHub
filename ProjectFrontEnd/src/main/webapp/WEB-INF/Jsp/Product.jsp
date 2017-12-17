@@ -18,6 +18,7 @@
 				<th>Product Name</th>
 				<th>Product Description</th>
 				<th>Price</th>
+				<th>Image</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
@@ -27,6 +28,7 @@
 					<td>${product.name}</td>
 					<td>${product.stock}</td>
 					<td>${product.rate}</td>
+					<td><img height="30" width="30" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="no image"></td>
 					<td ><a  href="./product_edit?id=${product.id}"><i class='glyphicon glyphicon-edit'></i></a></td>
 					<td><a  onclick="return confirm('Are you sure?');" href="./product_delete?id=${product.id}"><i class='glyphicon glyphicon-trash'></i></a></td>
 				</tr>

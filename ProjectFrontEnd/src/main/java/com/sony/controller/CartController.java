@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -79,12 +80,101 @@ public class CartController {
 	     return "redirect:/product-view?id="+id;
 	}
 	
+	@RequestMapping(value="/user/cartupdate",method=RequestMethod.POST)
+	public String updatecart(Model mv,@RequestParam("productid") int id,@RequestParam("quantity")int quantity)
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+	    
+	      Product p=productDao.findById(id);
+	      List<Cart> ca = CartDao.findByPid(id,name);
+	     if(p.getStock()>quantity)
+	     {
+	    	
+	    	 
+	    	   Cart c ;
+	    	   
+	    		   c=ca.get(0);
+	    		   p.setStock(p.getStock()+c.getQuantity());
+	    		   productDao.updateproduct(p);
+	    		   c.setQuantity(quantity);
+	    		   CartDao.updatecart(c);
+	    		   p.setStock(p.getStock()-quantity);
+	 	 	      productDao.updateproduct(p);
+	    		   mv.addAttribute("msg","successfully Updated to cart");
+	    	   
+	        
+	   
+	  		
+	     }else
+	     {
+	   mv.addAttribute("msg","No stock left");
+	    
+		
+	     }
+	     return "redirect:/user/view-cart";
+	}
+	
+	
+	@RequestMapping(value="/user/cart1")
+	public String addtocart1(Model mv,@RequestParam("id") int id)
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+	    
+	      Product p=productDao.findById(id);
+	      List<Cart> ca = CartDao.findByPid(id,name);
+	     if(p.getStock()>0)
+	     {
+	    	   Cart c ;
+	    	   if(ca.isEmpty())
+	    	   { 
+	    		   c=new Cart();
+	    		   c.setQuantity(1);
+	    	    c.setUser(name);
+	 	        c.setProduct(p);
+	 	        CartDao.addtocart(c);
+	 	        p.setStock(p.getStock()-1);
+	 	      productDao.updateproduct(p);
+	 	  		mv.addAttribute("msg","successfully added to cart");
+	      		   
+	    		  
+	           }
+	    	   
+	    	   else{
+	    		   c=ca.get(0);
+	    		   c.setQuantity(c.getQuantity()+1);
+	    		   CartDao.updatecart(c);
+	    		   p.setStock(p.getStock()-1);
+	 	 	      productDao.updateproduct(p);
+	    		   mv.addAttribute("msg","successfully Updated to cart");
+	    	   
+	        }
+	   
+	  		
+	     }else
+	     {
+	   mv.addAttribute("msg","No stock left");
+	    
+		
+	     }
+	     return "redirect:/view-cart";
+	}
+	
+	
+	@RequestMapping(value="/view-cart")
+	public String Vcart(Model model){
+		
+		return "redirect:/user/view-cart?msg=";
+		
+	}
 	@RequestMapping(value="/user/view-cart")
-	public String cart(Model model){
+	public String cart(Model model,@RequestParam("msg") String msg){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String name = auth.getName();
 		model.addAttribute("cartlist",this.CartDao.list(name));
 		model.addAttribute("listcat",this.CategoryDao.list());
+		model.addAttribute("msg", msg);
 		return "cart";
 		
 	}
@@ -100,7 +190,7 @@ public class CartController {
 		  CartDao.removecart(c);
 		productDao.updateproduct(p); 
 		
-          return "redirect:/user/view-cart";
+          return "redirect:/user/view-cart?msg=";
 		
 		
 	}

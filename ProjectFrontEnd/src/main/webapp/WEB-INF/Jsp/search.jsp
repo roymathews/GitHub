@@ -82,7 +82,7 @@
 
  </div>
  
-
+<jsp:include page="footer.jsp"></jsp:include>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <!-- <script src="js/bootstrap.js" type="text/javascript"></script> -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-3.3.4.js" type="text/javascript"></script>

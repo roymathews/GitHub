@@ -142,6 +142,17 @@ try {
 	return mv;
 	
 }
+	@RequestMapping(value="/user/productbycat")
+	public ModelAndView searchProductUser(HttpServletRequest request)
+	{
+		int id = Integer.parseInt(request.getParameter("id"));
+		int sort = Integer.parseInt(request.getParameter("sort"));
+		ModelAndView su = new ModelAndView("redirect:/productbycat");
+		su.addObject("id",id);
+		su.addObject("sort",sort);
+		return su;
+		
+	}
 	
 	@RequestMapping(value="/productbycat")
 	public ModelAndView searchProduct(HttpServletRequest request)

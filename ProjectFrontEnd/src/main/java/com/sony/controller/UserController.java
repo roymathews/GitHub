@@ -50,6 +50,16 @@ public class UserController {
 		
 		
 	}
+	@RequestMapping("/user")
+	public String homeU(Model model)
+	{	
+		
+		
+		return "redirect:/";
+		
+		
+	}
+	
 	@RequestMapping("/")
 	public String home(Model model)
 	{	
@@ -65,9 +75,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(Model model)
+	public String login(Model model,@RequestParam("error")String error)
 	{		
 		model.addAttribute("listcat",this.CategoryDao.list());
+		model.addAttribute("error",error);
 		return "login";
 		
 		
@@ -81,6 +92,15 @@ return "search";
 	
 	
 	
+	@RequestMapping("/success")
+	public String success(Model model,@RequestParam("msg")String msg)
+	{		
+		
+		model.addAttribute("msg",msg);
+		return "success";
+		
+		
+	}
 	
 	
 	@RequestMapping("/admin")

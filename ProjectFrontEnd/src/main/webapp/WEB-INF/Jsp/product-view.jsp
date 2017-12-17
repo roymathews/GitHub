@@ -35,7 +35,7 @@
 <br><br>
 
 <a href="user/cart?id=${product.id}"><button class="btn btn-info">ADD TO CART</button></a>
-<button class="btn btn-warning">BUY NOW</button>
+<a href="user/cart1?id=${product.id}"><button class="btn btn-warning">BUY NOW</button></a>
 <br><br>
 </div>
 <div class="col-md-1"></div>
@@ -52,7 +52,7 @@
 
 <h4><b>Address:</b> ${product.supplier.address}</h4>
  
-</div></div>
-
+</div></div></div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

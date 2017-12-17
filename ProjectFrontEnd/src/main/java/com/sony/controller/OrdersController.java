@@ -43,8 +43,8 @@ public class OrdersController {
 		
 	}
 	
-	ModelAndView mv = new ModelAndView("redirect:../");
-	mv.addObject("msg","successfully added");
+	ModelAndView mv = new ModelAndView("redirect:../success");
+	mv.addObject("msg","Order Placed successfully");
 
 	return mv;
 	
