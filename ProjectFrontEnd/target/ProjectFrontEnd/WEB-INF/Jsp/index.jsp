@@ -25,49 +25,24 @@
 </nav>
 <div class="container" style="width:90%;padding-top:20px">
 <div class="col-md-6">
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-      
-        <img src="${pageContext.request.contextPath}/resources/images/display-phone.png" alt="Los Angeles" style="width:100%;"/>
-        <div class="carousel-caption">
-        <h3 style="color:#FF0004">Redmi A1 Sale Today!!!</h3>
-      </div>
-      </div>
-
-      <div class="item">
-        <img src="${pageContext.request.contextPath}/resources/images/shopping.jpg" alt="Chicago" style="width:100%;">
-        <div class="carousel-caption">
-        <h3 style="color:#FF0004">50% Discount On Iphone</h3>
-      </div>
-      </div>
-    
-      <div class="item">
-        <img src="${pageContext.request.contextPath}/resources/images/game.jpg" alt="New york" style="width:100%;">
-        <div class="carousel-caption">
-        <h3 style="color:#FF0004">Galaxy s6!</h3>
-      </div>
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+<div class="slider">
+		<figure>
+		
+		<c:if test="${!empty productlist}">
+   <c:forEach items="${productlist}" begin="0" end="8" var="product"> 
+			<div  class="slide">
+			 <a title="${product.name}" href="product-view?id=${product.id}&msg=">
+	<img width="500" height="500" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg">
+			
+			
+			</a>
+			<h3 align="center" style="text-transform: capitalize;color:blue">${product.name}</h3>
+			
+			</div>
+</c:forEach></c:if>
+		
+		</figure>
+	</div>
  </div>
  <div class="col-md-6" style="height:367px;">
  <div style="background-color:#DCD5D5;border:1px solid #FBFBFB" class="col-md-12">
@@ -111,6 +86,7 @@
 
 
  </div>
+<jsp:include page="footer.jsp"></jsp:include>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js" type="text/javascript"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-3.3.4.js" type="text/javascript"></script>

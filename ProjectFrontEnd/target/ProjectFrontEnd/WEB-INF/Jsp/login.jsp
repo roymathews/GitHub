@@ -8,7 +8,9 @@
 <h3 style="margin-top:5%;"align="center" >Mobile Cart : LOGIN</h3><br>
 <c:url var="login" value="/j_spring_security_check" />
 <form name="formLogin" action="${login}" method="post" >
-
+<c:if test="${not empty error}">
+									<div align="center" style="color: red;">${error}</div>
+								</c:if>
 <div class="form-group">
 <label >E-mail:</label>
 <input name="name" class="form-control" type="text" id="email"  required/>
@@ -20,6 +22,7 @@
 <div align="center" class="form-group">
 <input  class="btn btn-primary"   type="submit" value="Submit"/>
 </div><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 </form>
 
 </div>

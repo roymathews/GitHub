@@ -21,7 +21,7 @@
 <ul >
 <c:if test="${!empty listcat}">
    <c:forEach items="${listcat}" var="category"> 
-  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}&sort=0">${category.name} </a></li>
+  <li style="text-transform: uppercase;"><a href="../productbycat?id=${category.id}&sort=0">${category.name} </a></li>
   
       </c:forEach></c:if>
 </ul>
@@ -50,28 +50,30 @@
                                                 Your Order</a>
                                         </h4>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            <div class="items">
-                                                <div class="col-md-9">
-                                                    <table class="table table-bordered">
-                                                      <tr ><th >Product</th><th>Price(Rs)</th></tr>
+           <div id="collapseOne" class="panel-collapse collapse in">
+             <div class="panel-body">
+              <div class="items">
+                  <div class="col-md-9">
+                    <table class="table table-bordered">
+                        <tr ><th >Product</th><th>Quantity</th><th>Price(Rs)</th><th>Total</th></tr>
                                                       
-                                                            
-                                                               <c:choose>
-                                                                 <c:when test="${!empty cartlist}">
-                                                                  <c:set var = "total" scope = "session" value = "0"/>
-                                                                  <c:forEach items="${cartlist}" var="cart"> 
-                                                                   <tr> <td><c:out value = "${(cart.product.name)}"/></td>
-                                                               <td><c:out value = "${(cart.product.rate)}"/></td>   </tr>  
-                                                                <c:set var = "total" scope = "session" value = "${(cart.product.rate*cart.quantity)+total}"/>  
-                                                                  </c:forEach>
+           <c:choose>
+              <c:when test="${!empty cartlist}">
+            <c:set var = "total" scope = "session" value = "0"/>
+                        <c:forEach items="${cartlist}" var="cart"> 
+                       <tr> <td><c:out value = "${(cart.product.name)}"/></td>
+                       <td><c:out value = "${(cart.quantity)}"/></td>
+                                   <td><c:out value = "${(cart.product.rate)}"/></td>  
+                                   <td>${(cart.product.rate*cart.quantity)}</td>
+                                    </tr>  
+                      <c:set var = "total" scope = "session" value = "${(cart.product.rate*cart.quantity)+total}"/>  
+                                 </c:forEach>
                                                                  
-                                                                 </c:when>
-                                                                 <c:otherwise>
-                                                                 <c:redirect url="view-cart"/> 
-                                                                 </c:otherwise>
-                                                                    </c:choose>
+                                     </c:when>
+                           <c:otherwise>
+                                       <c:redirect url="view-cart"/> 
+                                 </c:otherwise>
+                                               </c:choose>
                                                               
                                                          
                                                            
@@ -231,5 +233,6 @@
                             </form>
                     </div>
 </div></div></div></div></div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

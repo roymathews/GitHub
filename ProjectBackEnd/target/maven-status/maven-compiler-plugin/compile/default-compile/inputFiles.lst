@@ -1,3 +1,4 @@
+C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\OffersDaoImpl.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\config\ApplicationContextConfig.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\ProductDao.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\OrdersDao.java
@@ -5,6 +6,7 @@ C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\CartDao.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\UserDaoImpl.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\model\Product.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\UserDao.java
+C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\model\Offers.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\CategoryDao.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\SupplierDao.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\CategoryDaoImpl.java
@@ -16,4 +18,5 @@ C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\model\Orders.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\model\User.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\OrdersDaoImpl.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\ProductDaoImpl.java
+C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\dao\OffersDao.java
 C:\Users\sony\workspace\ProjectBackEnd\src\main\java\com\sony\model\Supplier.java

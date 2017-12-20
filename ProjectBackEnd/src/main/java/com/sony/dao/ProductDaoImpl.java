@@ -95,5 +95,12 @@ public class ProductDaoImpl implements ProductDao {
 		
 	}
 
+@Transactional
+	public List<Product> list2(int id) {
+	Session s=sessionFactory.openSession();
+	List<Product> results =s.createQuery("from Product WHERE category.id IN (select category.id from Product WHERE ID="+id+")").list();	
+    return results; 
+	}
+
 
 }

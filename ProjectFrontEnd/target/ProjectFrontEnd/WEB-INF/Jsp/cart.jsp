@@ -19,7 +19,7 @@
 <ul >
 <c:if test="${!empty listcat}">
    <c:forEach items="${listcat}" var="category"> 
-  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}&sort=0">${category.name} </a></li>
+  <li style="text-transform: uppercase;"><a href="../productbycat?id=${category.id}&sort=0">${category.name} </a></li>
   
       </c:forEach></c:if>
 </ul>
@@ -27,8 +27,13 @@
 </nav>
 <div class="container" style="width:90%;">
 <div style="width: 73%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">
+<c:if test="${not empty msg}">
+									<div align="center" class="msg" style="color: red;">${msg}</div>
+								</c:if>
 <h4 style="padding-left:3%;">MY CART</h4>
+
 <hr/>
+
 <c:choose>
   <c:when test="${!empty cartlist}">
     <c:set var = "total" scope = "session" value = "0"/>
@@ -48,8 +53,23 @@
 </div>
 <div align="right" class="col-md-4">
 <p>FREE DELIVERY IN 3-5 DAYS</p>
-<p><b>Quantity:${cart.quantity}</b></p>
-<p><b>Total:${cart.product.rate*cart.quantity}</b></p>
+<form method="post" action="cartupdate">
+
+<div class="col-md-12">
+<div class="col-md-4">
+<b>Quantity:</b>
+</div>
+<div class="col-md-5">
+<input type="hidden" name="productid" value="${cart.product.id}" />
+<input type="number" style="width:60px;padding-left: 8px" min="1"  name="quantity" value="${cart.quantity}">
+</div>
+<div class="col-md-3">
+<button type="submit"><i  class="fa fa-refresh"></i></button>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</div>
+</div>
+</form>
+<p><br><br><b>Total:${cart.product.rate*cart.quantity}</b></p>
 </div>
  <c:set var = "total" scope = "session" value = "${(cart.product.rate*cart.quantity)+total}"/>
 
@@ -87,5 +107,6 @@
 </div>
 </c:if>
 </div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

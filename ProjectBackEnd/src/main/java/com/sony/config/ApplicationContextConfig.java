@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.sony.model.Category;
+import com.sony.model.Offers;
 import com.sony.model.Orders;
 import com.sony.model.Product;
 import com.sony.model.Supplier;
@@ -57,6 +58,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClasses(Supplier.class);
 		sessionBuilder.addAnnotatedClasses(Cart.class);
 		sessionBuilder.addAnnotatedClasses(Orders.class);
+		sessionBuilder.addAnnotatedClasses(Offers.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 

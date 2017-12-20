@@ -20,6 +20,7 @@ import com.sony.dao.UserDao;
 import com.sony.dao.CategoryDao;
 import com.sony.dao.ProductDao;
 import com.sony.dao.SupplierDao;
+import com.sony.dao.OffersDao;
 import com.sony.model.Category;
 
 import com.sony.model.Supplier;
@@ -37,7 +38,9 @@ public class UserController {
 	
 	@Autowired (required= true)
 	private SupplierDao SupplierDao;
-	
+
+	@Autowired (required= true)
+	private OffersDao OffersDao;
 	@Autowired (required= true)
 	private ProductDao ProductDAO;
 	
@@ -66,6 +69,7 @@ public class UserController {
 		model.addAttribute("listcat",this.CategoryDao.list());
 		
 
+		model.addAttribute("listoffers",this.OffersDao.list());
 		
 		model.addAttribute("productlist",this.ProductDAO.list());
 		

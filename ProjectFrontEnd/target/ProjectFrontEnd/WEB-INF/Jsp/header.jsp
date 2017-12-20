@@ -9,8 +9,7 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="${pageContext.request.contextPath}/resources/css/test.css" rel="stylesheet">
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -95,10 +94,10 @@ background-color: #ADD8E6;
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1" ><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
      
        <ul class="nav navbar-nav navbar-right">
-        <a class="navbar-brand" href="./">Mobile Cart</a>
+        <a   class="navbar-brand" href="./" ><span><img height="30" width="30" src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="logo"> <b>Mobile Cart</b></span></a>
         <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
     
-        <li style="list-style-type: none;margin-top: 5%"> 
+        <li style="list-style-type: none;margin-top: 5%;"> 
         <select name="cat" required  class="form-control" onchange="location = this.value;">
       <option selected="">Select Category</option>
       <c:forEach items="${listcat}" var="category" >
@@ -121,20 +120,21 @@ background-color: #ADD8E6;
    
       
       <ul class="nav navbar-nav navbar-right">
+       
       <c:choose>
        <c:when test="${pageContext.request.userPrincipal.name != null}">
-      
+     
+        <c:if test="${pageContext.request.userPrincipal.name != 'roymathewsp@gmail.com'}">
       <li>
-      <a href="user/view-cart">VIEW CART</a>
+      <a href="view-cart?msg=" title="View Cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
       </li>
-    
-       
+    </c:if>
 	   <li ><a>Welcome : ${pageContext.request.userPrincipal.name}</a></li>
           <li> <a href="<c:url value="/logout" />" > Logout</a></li>
 	</c:when>
 	<c:otherwise>
         <li><a href="register">Sign Up</a></li>
-         <li><a href="login">Login</a></li></c:otherwise>
+         <li><a href="login?error=">Login</a></li></c:otherwise>
          </c:choose>
       </ul>
     </div>

@@ -1,6 +1,6 @@
 com\sony\controller\CartController.class
-com\sony\controller\UserController.class
 com\sony\controller\OrdersController.class
-com\sony\controller\ProductController.class
 com\sony\controller\CategoryController.class
 com\sony\controller\SupplierController.class
+com\sony\controller\UserController.class
+com\sony\controller\ProductController.class

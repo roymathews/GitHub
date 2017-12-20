@@ -11,6 +11,7 @@
     <li class="active"><a href="#home1" data-toggle="tab" role="tab">CATEGORY</a></li>
     <li><a href="#paneTwo1" data-toggle="tab" role="tab">PRODUCTS</a></li>
     <li><a href="#paneTwo2" data-toggle="tab" role="tab">SUPPLIER</a></li>
+     <li><a href="#paneTwo3" data-toggle="tab" role="tab">OFFERS</a></li>
     
    
   </ul>  
@@ -194,6 +195,49 @@
           
         
             </div></div>
+       
+         <div class="tab-pane fade in" id="paneTwo3">
+             
+        
+ <div class="row">
+        <!-- left column -->
+       
+      <div class="col-md-3"></div>
+<div style="margin-top:5%;" class="col-md-6">
+
+ <form method="post" action="admin/offersubmit">
+ <h3>Add Offers</h3>
+
+ <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="main" type="text" required class="form-control" name="main" placeholder="Heading">
+    </div>
+   
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-align-justify"></i></span>
+      <input id="desc2" type="text" required class="form-control" name="desc" placeholder="Description">
+    </div>
+    <br>
+    
+    <div align="center" >
+     <input type="submit" value="Submit" class="btn btn-success" name="submit">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    </div><br>
+  </form>
+  
+</div>
+<div style="margin-top:5%;" class="col-md-3">
+
+<a href="admin/listoffers"> <button   class="btn btn-primary">List all Offers</button></a>
+</div>
+          
+        
+            </div>
+          
+       </div>
+       
+       
        
       </div>
        </div></div>

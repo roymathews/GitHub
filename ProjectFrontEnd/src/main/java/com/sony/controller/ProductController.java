@@ -175,12 +175,16 @@ try {
 	
 		ModelAndView su = new ModelAndView("product-view");
 		
-		List<Product> list = ProductDAO.list();
+		
+		List<Product> list = ProductDAO.list2(id);
+		
 		su.addObject("listcat",CategoryDao.list());
 		su.addObject("product",ProductDAO.findById(id));
+		
+	
 		su.addObject("msg",msg);
 		
-		su.addObject("product-view",list);
+		su.addObject("productlist",list);
 		
 		return su;
 		

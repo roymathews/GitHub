@@ -35,7 +35,7 @@
 <br><br>
 
 <a href="user/cart?id=${product.id}"><button class="btn btn-info">ADD TO CART</button></a>
-<button class="btn btn-warning">BUY NOW</button>
+<a href="user/cart1?id=${product.id}"><button class="btn btn-warning">BUY NOW</button></a>
 <br><br>
 </div>
 <div class="col-md-1"></div>
@@ -53,6 +53,30 @@
 <h4><b>Address:</b> ${product.supplier.address}</h4>
  
 </div></div>
+<div class="container" style="margin-top:40px">
+ <div  class="col-md-12">
+     <h3 >Similar Products</h3><br>
+     <c:if test="${!empty productlist}">
+   <c:forEach items="${productlist}" begin="0" end="3" var="product"> 
+     <div align="center" id="border" class="col-md-3"> 
+  
+    <br>
+    <a href="product-view?id=${product.id}&msg=">
+    <img width="100px" height="100px" src="${pageContext.request.contextPath}/resources/products/${product.id}.jpg" alt="" />
+     </a>  <p>${product.name}</p>
+      <strong>Rs :${product.rate}</strong>
+     
+      <p>${product.category.name}</p>
+   </div>
+    </c:forEach>
+    </c:if> 
+     
+  </div>
 
+
+ </div>
+
+</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
