@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sony.dao.CartDao;
 import com.sony.dao.CategoryDao;
 import com.sony.dao.ProductDao;
 import com.sony.dao.SupplierDao;
+import com.sony.model.Cart;
 import com.sony.model.Category;
 import com.sony.model.Product;
 import com.sony.model.Supplier;
@@ -32,7 +36,9 @@ public class ProductController {
 	
 	@Autowired (required= true)
 	private CategoryDao CategoryDao;
-	
+
+	@Autowired (required= true)
+	private CartDao CartDao;
 	@Autowired (required= true)
 	private SupplierDao SupplierDao;
 	@RequestMapping(value="/admin/productsubmit",method=RequestMethod.POST)
@@ -147,6 +153,8 @@ try {
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
 		int sort = Integer.parseInt(request.getParameter("sort"));
+		
+		
 		ModelAndView su = new ModelAndView("redirect:/productbycat");
 		su.addObject("id",id);
 		su.addObject("sort",sort);
@@ -159,10 +167,20 @@ try {
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
 		int sort = Integer.parseInt(request.getParameter("sort"));
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+	      List<Cart> c = CartDao.list(name);
+	      int count = 0;
+	  	for (int i=0;i<c.size();i++)
+	  	{
+	  		count = count+1;
+	  		
+	  	}
 		ModelAndView su = new ModelAndView("search");
 		su.addObject("productlist",ProductDAO.findByCatId(id,sort));
 		su.addObject("listcat",CategoryDao.list());
 		su.addObject("msg1",id);
+		su.addObject("count",count);
 		su.addObject("sort",sort);
 		return su;
 		
@@ -172,7 +190,15 @@ try {
 	{
 		int id = Integer.parseInt(request.getParameter("id"));
 		String msg = request.getParameter("msg");
-	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+	      List<Cart> c = CartDao.list(name);
+	      int count = 0;
+	  	for (int i=0;i<c.size();i++)
+	  	{
+	  		count = count+1;
+	  		
+	  	}
 		ModelAndView su = new ModelAndView("product-view");
 		
 		
@@ -180,8 +206,7 @@ try {
 		
 		su.addObject("listcat",CategoryDao.list());
 		su.addObject("product",ProductDAO.findById(id));
-		
-	
+		su.addObject("count",count);
 		su.addObject("msg",msg);
 		
 		su.addObject("productlist",list);

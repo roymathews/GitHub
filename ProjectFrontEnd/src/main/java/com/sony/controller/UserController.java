@@ -21,6 +21,8 @@ import com.sony.dao.CategoryDao;
 import com.sony.dao.ProductDao;
 import com.sony.dao.SupplierDao;
 import com.sony.dao.OffersDao;
+import com.sony.dao.CartDao;
+import com.sony.model.Cart;
 import com.sony.model.Category;
 
 import com.sony.model.Supplier;
@@ -40,7 +42,11 @@ public class UserController {
 	private SupplierDao SupplierDao;
 
 	@Autowired (required= true)
+	private CartDao CartDao;
+	
+	@Autowired (required= true)
 	private OffersDao OffersDao;
+
 	@Autowired (required= true)
 	private ProductDao ProductDAO;
 	
@@ -66,6 +72,17 @@ public class UserController {
 	@RequestMapping("/")
 	public String home(Model model)
 	{	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+	      
+	      List<Cart> c = CartDao.list(name);
+	      int count = 0;
+	  	for (int i=0;i<c.size();i++)
+	  	{
+	  		count = count+1;
+	  		
+	  	}
+	  	model.addAttribute("count",count);
 		model.addAttribute("listcat",this.CategoryDao.list());
 		
 

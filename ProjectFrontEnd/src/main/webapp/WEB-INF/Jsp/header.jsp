@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +14,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/test.css" rel="stylesheet">
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<title>Mobile Cart</title>
+<link rel="shortcut icon"  href="${pageContext.request.contextPath}/resources/images/logo.jpg">
 <style type="text/css">
+
 body
 {
 
@@ -95,7 +99,7 @@ background-color: #ADD8E6;
      
        <ul class="nav navbar-nav navbar-right">
         <a   class="navbar-brand" href="./" ><span><img height="30" width="30" src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="logo"> <b>Mobile Cart</b></span></a>
-        <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
+        <sec:authorize access="!hasRole('ADMIN')">
     
         <li style="list-style-type: none;margin-top: 5%;"> 
         <select name="cat" required  class="form-control" onchange="location = this.value;">
@@ -106,12 +110,12 @@ background-color: #ADD8E6;
      
       </c:forEach>
       </select></li>
-      </c:if>
-      <c:if test="${pageContext.request.userPrincipal.name != null && pageContext.request.userPrincipal.name =='roymathewsp@gmail.com'}">
+      </sec:authorize>
+      <sec:authorize access="hasRole('ADMIN')">
       <li>
       <a href="admin?msg=">ADMIN</a>
       </li>
-      </c:if>
+      </sec:authorize>
       </ul>
       </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -124,11 +128,19 @@ background-color: #ADD8E6;
       <c:choose>
        <c:when test="${pageContext.request.userPrincipal.name != null}">
      
-        <c:if test="${pageContext.request.userPrincipal.name != 'roymathewsp@gmail.com'}">
+        <sec:authorize access="hasRole('USER')">
       <li>
-      <a href="view-cart?msg=" title="View Cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
+      <a href="view-cart?msg=" title="View Cart">
+      <i class="fa fa-shopping-cart fa-2x">
+      <c:if test="${count!=0}">
+      <span style="background-color:red" class="badge">
+      ${count}
+      </span>
+      
+      </c:if>
+      </i></a>
       </li>
-    </c:if>
+    </sec:authorize>
 	   <li ><a>Welcome : ${pageContext.request.userPrincipal.name}</a></li>
           <li> <a href="<c:url value="/logout" />" > Logout</a></li>
 	</c:when>
@@ -141,5 +153,32 @@ background-color: #ADD8E6;
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.container-fluid -->
+</nav>
+
+<nav style="border:none;" role="navigation" class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     
+        <button type="button" data-target="#shop-nav" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Open Menu</span>
+              MENU <span class="glyphicon glyphicon-chevron-down"></span>
+          
+        </button>
+     
+    </div>
+<div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
+<ul >
+   <sec:authorize access="!hasRole('ADMIN')">
+<div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
+<ul >
+<c:if test="${!empty listcat}">
+   <c:forEach items="${listcat}" var="category"> 
+  <li style="text-transform: uppercase;"><a href="productbycat?id=${category.id}&sort=0">${category.name} </a></li>
+  
+      </c:forEach></c:if>
+</ul>
+</div></sec:authorize>
+</ul>
+</div>
 </nav>
 </body>

@@ -3,32 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"></jsp:include>
-<nav style="border:none;background-color: #ADD8E6;" role="navigation" class="navbar navbar-default">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-     
-        <button type="button" data-target="#shop-nav" data-toggle="collapse" class="navbar-toggle">
-            <span class="sr-only">Open Menu</span>
-              MENU <span class="glyphicon glyphicon-chevron-down"></span>
-          
-        </button>
-     
-    </div>
-<div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
-<ul >
-  <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
-<div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
-<ul >
-<c:if test="${!empty listcat}">
-   <c:forEach items="${listcat}" var="category"> 
-  <li style="text-transform: uppercase;"><a href="../productbycat?id=${category.id}&sort=0">${category.name} </a></li>
-  
-      </c:forEach></c:if>
-</ul>
-</div></c:if>
-</ul>
-</div>
-</nav>
+
 
 <div class='container'>
     <div class='row' style="padding-bottom:25px;">

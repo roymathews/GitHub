@@ -172,6 +172,15 @@ public class CartController {
 	public String cart(Model model,@RequestParam("msg") String msg){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String name = auth.getName();
+	      List<Cart> c = CartDao.list(name);
+	      int count = 0;
+	  	for (int i=0;i<c.size();i++)
+	  	{
+	  		count = count+1;
+	  		
+	  	}
+	  	model.addAttribute("count",count);
+	      
 		model.addAttribute("cartlist",this.CartDao.list(name));
 		model.addAttribute("listcat",this.CategoryDao.list());
 		model.addAttribute("msg", msg);
@@ -201,6 +210,14 @@ public class CartController {
 		model.addAttribute("listcat",clist);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String name = auth.getName();
+	      List<Cart> c = CartDao.list(name);
+	      int count = 0;
+	  	for (int i=0;i<c.size();i++)
+	  	{
+	  		count = count+1;
+	  		
+	  	}
+	  	model.addAttribute("count",count);
 	      model.addAttribute("cartlist",this.CartDao.list(name));
 	      model.addAttribute("userlist",this.UserDao.list(name));
 		

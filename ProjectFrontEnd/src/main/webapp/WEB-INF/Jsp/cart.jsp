@@ -2,29 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <jsp:include page="header.jsp"></jsp:include>
-<nav style="border:none;background-color: #ADD8E6" role="navigation" class="navbar navbar-default">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-     
-        <button type="button" data-target="#shop-nav" data-toggle="collapse" class="navbar-toggle">
-            <span class="sr-only">Open Menu</span>
-              MENU <span class="glyphicon glyphicon-chevron-down"></span>
-          
-        </button>
-     
-    </div>
-  <c:if test="${pageContext.request.userPrincipal.name !='roymathewsp@gmail.com'}">
-<div  class="container collapse navbar-collapse" style="width:90%;" id="shop-nav" >
-<ul >
-<c:if test="${!empty listcat}">
-   <c:forEach items="${listcat}" var="category"> 
-  <li style="text-transform: uppercase;"><a href="../productbycat?id=${category.id}&sort=0">${category.name} </a></li>
-  
-      </c:forEach></c:if>
-</ul>
-</div></c:if>
-</nav>
+
 <div class="container" style="width:90%;">
 <div style="width: 73%; float:left; margin: 1%; background-color: #F8F8F8;border:0.1px solid #CBCBCB">
 <c:if test="${not empty msg}">

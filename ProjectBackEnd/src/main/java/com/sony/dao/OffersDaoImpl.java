@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.sony.model.Category;
 import com.sony.model.Offers;
 
 @Repository("OffersDao")
@@ -43,5 +43,25 @@ public class OffersDaoImpl implements OffersDao{
 		System.out.println(listoffers);
 		return listoffers;
 
+	}
+	@Transactional
+	public Offers findByid(int id) {
+		return (Offers)sessionFactory.getCurrentSession().get(Offers.class,id);
+	}
+	
+	@Transactional
+	public void updateoffer(Offers s) {
+		Session c = sessionFactory.getCurrentSession();
+		c.update(s);
+		System.out.println("success");
+		
+	}
+	@Transactional
+	public void delete(Offers c) {
+		Session s=sessionFactory.getCurrentSession();
+		
+		s.delete(c);
+		
+		
 	}
 }

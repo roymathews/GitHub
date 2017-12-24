@@ -18,9 +18,6 @@ import com.sony.model.Category;
 @Repository("CategoryDao")
 public class CategoryDaoImpl implements CategoryDao{
 
-	
-	
-
 @Autowired
 private SessionFactory sessionFactory;
 
