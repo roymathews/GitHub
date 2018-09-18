@@ -1,3 +1,3 @@
 # MobileCart
-This project is a web-based online shopping application developed in JAVA LANGUAGE using 
-Spring, Hibernate , MVC 
+This project is a web-based online shopping application developed in Java using 
+Spring, Hibernate and MVC 
